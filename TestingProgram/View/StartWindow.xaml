@@ -5,11 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestingProgram.View"
         mc:Ignorable="d"
-        Title="StartWindow" Height="200" Width="300">
+        Title="StartWindow" 
+        
+        Height="200" Width="300">
     <Grid>
-		<StackPanel>
+		<StackPanel Visibility="Visible">
 			<Button Content="Ученик"/>
 			<Button Content="Учитель"/>
 		</StackPanel>
+        <StackPanel Visibility="Hidden">
+            <TextBlock>IP:</TextBlock>
+            <TextBox></TextBox>
+            <TextBlock>Port:</TextBlock>
+            <TextBox></TextBox>
+            <Button Content="Присоединиться"/>
+        </StackPanel>
+        <StackPanel Visibility="Hidden">
+            <TextBlock>Port:</TextBlock>
+            <TextBox></TextBox>
+            <TextBlock>Файл теста:</TextBlock>
+            <TextBox></TextBox>
+            <Button Content="Запустить"/>
+        </StackPanel>
     </Grid>
 </Window>
