@@ -50,9 +50,8 @@ namespace TestingProgram.Model
 					case "STOP_TEST":
 						StopTestingToClient?.Invoke();
 						break;
-					case "GET_ANSWER":
-						break;
 					default:
+						AddAnswer(new AnswerForTest(packet.Message));
 						break;
 				}
 			}
@@ -66,8 +65,6 @@ namespace TestingProgram.Model
 				type = Type.Client;
 				ClientServer.Client.Client.NewMessage += Client_NewMessage;
 			}
-
-
 		}
 
 		private static void Client_NewMessage(byte[] buffer)

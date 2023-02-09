@@ -34,6 +34,7 @@ namespace ConsoleDebugTest
 				Console.WriteLine("Enter to any key to start testing");
 				Console.ReadLine();
 				Controller.StartTestingToServer += Controller_StartTestingToServer;
+				Controller.GetAnswerToServer += Controller_GetAnswerToServer;
 				Controller.StartTesting(test);
 			}
 			else
@@ -42,6 +43,12 @@ namespace ConsoleDebugTest
 				Controller.Connect(Console.ReadLine() ?? "127.0.0.1", int.Parse(Console.ReadLine() ?? "4526"));
 				Controller.StartTestingToClient += Controller_StartTestingToClient;
 			}
+		}
+
+		private static void Controller_GetAnswerToServer(AnswerForTest answer)
+		{
+			
+			Console.WriteLine("{Login}|{Ip}|{Start}|{End}|{Good}|{Bad}|{Unresolved}|{All}\n" + answer.ToString());
 		}
 
 		private static void Controller_StartTestingToServer(Test test)
@@ -66,6 +73,8 @@ namespace ConsoleDebugTest
 				int ans = int.Parse(Console.ReadLine() ?? "0");
 				answer.AddAnswer(test.Questions[i].AnswerMas[ans].IsTrue ? AnswerForTest.AnswerType.Good : AnswerForTest.AnswerType.Bad);
 			}
+			answer.End = DateTime.Now;
+			Console.WriteLine(answer.ToString());
 			Controller.AddAnswer(answer);
 		}
 		private static void ConsoleWTest(Test test)
