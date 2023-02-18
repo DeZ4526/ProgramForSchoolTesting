@@ -10,7 +10,7 @@
         Height="200" Width="300">
     <Grid>
 		<StackPanel Visibility="Visible">
-			<Button Content="Ученик"/>
+			<Button Content="Ученик" Click="Button_Click"/>
 			<Button Content="Учитель"/>
 		</StackPanel>
         <StackPanel Visibility="Hidden">

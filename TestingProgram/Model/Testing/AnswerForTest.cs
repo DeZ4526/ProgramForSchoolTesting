@@ -10,6 +10,22 @@ namespace TestingProgram.Model.Testing
 			Good,
 			Unresolved
 		}
+		public AnswerForTest(string text)
+		{
+			//$"{Login}|{Ip}|{Start}|{End}|{Good}|{Bad}|{Unresolved}|{All}";
+			string[] z = text.Split('|');
+			if (z.Length == 8)
+			{
+				Login = z[0];
+				Ip = z[1];
+				Start = DateTime.Parse(z[2]);
+				End = DateTime.Parse(z[3]);
+				Good = int.Parse(z[4]);
+				Bad = int.Parse(z[5]);
+				Unresolved = int.Parse(z[6]);
+				All = int.Parse(z[7]);
+			}
+		}
 		public AnswerForTest(string login, DateTime start, DateTime end, int good, int bad, int unresolved, int all)
 		{
 			Login = login ?? throw new ArgumentNullException(nameof(login));
@@ -56,6 +72,7 @@ namespace TestingProgram.Model.Testing
 		public int Unresolved { get; private set; } = 0;
 		public int All { get; private set; } = 0;
 
-
+		public override string ToString()
+			=> $"{Login}|{Ip}|{Start}|{End}|{Good}|{Bad}|{Unresolved}|{All}";		
 	}
 }

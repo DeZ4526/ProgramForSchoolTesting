@@ -10,7 +10,7 @@ namespace ConsoleDebugTest
 		static void Main(string[] args)
 		{
 			Console.Write("S - Server\n" +
-				"C - Client");
+				"C - Client\n");
 			if (Console.ReadLine() == "S")
 			{
 				Console.WriteLine("Server\nEnter port:");

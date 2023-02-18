@@ -1,11 +1,8 @@
 ﻿using ConsoleDebugTest.Model.ClientServer.Protocol;
-using ConsoleDebugTest.Model.Testing.TestConverters;
-using System.IO;
 using TestingProgram.Model.ClientServer.Protocol;
 using TestingProgram.Model.ClientServer.Server;
 using TestingProgram.Model.Testing;
 using TestingProgram.Model.Testing.TestConverters;
-using static System.Net.Mime.MediaTypeNames;
 using static TestingProgram.Model.ClientServer.Server.Server;
 
 namespace TestingProgram.Model
@@ -48,7 +45,7 @@ namespace TestingProgram.Model
 				switch (packet.Message)
 				{
 					case "STOP_TEST":
-						StopTestingToClient?.Invoke();
+						StopTestingToServer?.Invoke();
 						break;
 					default:
 						AddAnswer(new AnswerForTest(packet.Message));
@@ -137,12 +134,14 @@ namespace TestingProgram.Model
 			switch (type)
 			{
 				case Type.Server:
+					byte[] p = packetConvector.GetBytes(new Packet(Packet.TypePacket.test, "STOP_TEST"));
+					for (int i = 0; i < Server.Clients.Length; i++)
+						Clients[i].Send(p);
 					break;
 				case Type.Client:
+					ClientServer.Client.Client.Send(packetConvector.GetBytes(new Packet(Packet.TypePacket.test, "STOP_TEST")));
 					break;
 				case Type.None:
-					break;
-				default:
 					break;
 			}
 		}
@@ -150,8 +149,9 @@ namespace TestingProgram.Model
 		public delegate void startTestingToClient(Test test);
 		public static event startTestingToClient StartTestingToClient;
 
-		public delegate void stopTestingToClient();
-		public static event stopTestingToClient StopTestingToClient;
+		public delegate void stopTesting();
+		public static event stopTesting StopTestingToClient;
+		public static event stopTesting StopTestingToServer;
 
 		public delegate void startTestingToServer(Test test);
 		public static event startTestingToServer StartTestingToServer;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using System.Windows.Controls;
 
 namespace TestingProgram.Model.ClientServer.Server
 {
@@ -16,7 +15,7 @@ namespace TestingProgram.Model.ClientServer.Server
 
 		private static int _port;
 		public static int Port { get => _port; }
-		public static void Start(int port)
+		public static bool Start(int port)
 		{
 			_port = port;
 			try
@@ -25,10 +24,12 @@ namespace TestingProgram.Model.ClientServer.Server
 				_socket.Listen(10);
 				_accepting.Start();
 				ServerStart?.Invoke();
+				return true;
 			}
 			catch (Exception ex)
 			{
 				ServerError?.Invoke(ex);
+				return false;
 			}
 		}
 		public static void Receive(Client client, byte[] buffer)

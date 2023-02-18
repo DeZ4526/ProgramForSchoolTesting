@@ -60,22 +60,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\ClientServer\Client\Client.cs" />
     <Compile Include="Model\ClientServer\Protocol\IPacketConvector.cs" />
     <Compile Include="Model\ClientServer\Protocol\JSONPacketConvector.cs" />
+    <Compile Include="Model\ClientServer\Protocol\MyPacketConvector.cs" />
     <Compile Include="Model\ClientServer\Protocol\Packet.cs" />
-    <Compile Include="ViewModel\DelegateCommand.cs" />
-    <Compile Include="View\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ResultsWindow.xaml.cs">
-      <DependentUpon>ResultsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\StartWindow.xaml.cs">
-      <DependentUpon>StartWindow.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Model\ClientServer\Client\Client.cs" />
     <Compile Include="Model\ClientServer\Server\Client.cs" />
     <Compile Include="Model\ClientServer\Server\Server.cs" />
     <Compile Include="Model\Controller.cs" />
@@ -88,8 +77,23 @@
     <Compile Include="Model\Testing\Test.cs" />
     <Compile Include="Model\Testing\TestConverters\ITestConverter.cs" />
     <Compile Include="Model\Testing\TestConverters\STSTConvertor.cs" />
+    <Compile Include="Model\Testing\TestConverters\TestToByteArray.cs" />
     <Compile Include="Model\Testing\TestConverters\TestToFile.cs" />
     <Compile Include="Model\Testing\TestingController.cs" />
+    <Compile Include="ViewModel\DelegateCommand.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\StartWindowViewModel.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ResultsWindow.xaml.cs">
+      <DependentUpon>ResultsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
