@@ -3,29 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TestingProgram.View"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:TestingProgram.View" 
+		xmlns:vm="clr-namespace:TestingProgram.ViewModel"
+		mc:Ignorable="d"
         Title="StartWindow" 
         
         Height="200" Width="300">
+	<Window.DataContext>
+		<vm:StartWindowViewModel/>
+	</Window.DataContext>
     <Grid>
-		<StackPanel Visibility="Visible">
-			<Button Content="Ученик" Click="Button_Click"/>
-			<Button Content="Учитель"/>
+		<StackPanel Visibility="{Binding VisibilityStartMenu}">
+			<Button Content="Ученик" Command="{Binding ShowConnectServer}"/>
+			<Button Content="Учитель" Command="{Binding ShowStartServer}"/>
 		</StackPanel>
-        <StackPanel Visibility="Hidden">
+		<StackPanel Visibility="{Binding VisibilityConnectServer}">
             <TextBlock>IP:</TextBlock>
-            <TextBox></TextBox>
-            <TextBlock>Port:</TextBlock>
-            <TextBox></TextBox>
-            <Button Content="Присоединиться"/>
+			<TextBox Text="{Binding Ip}"/>
+			<TextBlock>Port:</TextBlock>
+			<TextBox Text="{Binding Port}"/>
+			<Button Content="Присоединиться" Command="{Binding StartClient}"/>
         </StackPanel>
-        <StackPanel Visibility="Hidden">
+		<StackPanel Visibility="{Binding VisibilityStartServer}">
             <TextBlock>Port:</TextBlock>
             <TextBox></TextBox>
             <TextBlock>Файл теста:</TextBlock>
-            <TextBox></TextBox>
-            <Button Content="Запустить"/>
+			<Button Content="{Binding PathTestFile}" Command="{Binding SelectTestFile}" />
+			<Button Content="Запустить" Command="{Binding StartServer}"/>
         </StackPanel>
     </Grid>
 </Window>

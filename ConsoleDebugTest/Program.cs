@@ -2,6 +2,7 @@
 using TestingProgram.Model;
 using TestingProgram.Model.ClientServer.Client;
 using TestingProgram.Model.Testing;
+using TestingProgram.Model.Testing.TestConverters;
 
 namespace ConsoleDebugTest
 {
@@ -31,6 +32,8 @@ namespace ConsoleDebugTest
 				questions[1] = new Question("1", answer1);
 				questions[2] = new Question("1", answer2);
 				Test test = new Test("Test", "test 1", questions);
+				string s = new STSTConvertor().GetText(test);
+				File.WriteAllText("test.stst", s);
 				Console.WriteLine("Enter to any key to start testing");
 				Console.ReadLine();
 				Controller.StartTestingToServer += Controller_StartTestingToServer;
