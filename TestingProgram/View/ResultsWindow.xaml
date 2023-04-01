@@ -4,23 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestingProgram.View"
+		xmlns:vm="clr-namespace:TestingProgram.ViewModel"
         mc:Ignorable="d"
         Title="ResultsWindow" Height="450" Width="800">
-    <StackPanel>
-        <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="File">
-                <MenuItem Header="New Project" ></MenuItem>
-                <MenuItem Header="Open Project" >
-                    <MenuItem Header="WinForms"></MenuItem>
-                    <MenuItem Header="WPF" ></MenuItem>
-                </MenuItem>
-                <Separator />
-                <MenuItem Header="Exit" ></MenuItem>
-            </MenuItem>
-            <MenuItem Header="Edit" ></MenuItem>
-            <MenuItem Header="View" ></MenuItem>
-        </Menu>
-        <ListView>
+    <Window.DataContext>
+        <vm:ResultsWindowViewModel/>
+    </Window.DataContext>
+	<StackPanel>
+		<ListView ItemsSource="{Binding Answers}">
 
             <ListView.View>
 
@@ -37,6 +28,6 @@
 
             </ListView.View>
         </ListView>
-
-    </StackPanel>
+		<Button Content="End testing" Command="{Binding EndTesting}"/>
+	</StackPanel>
 </Window>

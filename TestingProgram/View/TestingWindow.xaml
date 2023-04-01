@@ -3,10 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TestingProgram.View"
-        mc:Ignorable="d"
-        Title="TestingWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        xmlns:local="clr-namespace:TestingProgram.View" 
+		xmlns:vm="clr-namespace:TestingProgram.ViewModel"
+		mc:Ignorable="d"
+        Title="" Height="450" Width="800" Name="TestingWindowW">
+	<Window.DataContext>
+		<vm:TestingWindowViewModel/>
+	</Window.DataContext>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="30"/>
+		</Grid.RowDefinitions>
+		<StackPanel>
+			<TextBlock Text="{Binding SelectedQuestion.Text}"/>
+			<ListBox ItemsSource="{Binding SelectedQuestion.AnswerMas}" SelectedItem="{Binding SelectedAnswer}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Text}"/>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+			
+		</StackPanel>
+		<Button Command="{Binding NextSlide}" Content="Ответить" Grid.Row="1"/>
+	</Grid>
 </Window>

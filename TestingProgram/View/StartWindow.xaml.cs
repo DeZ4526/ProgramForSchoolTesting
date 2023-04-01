@@ -24,10 +24,5 @@ namespace TestingProgram.View
 			InitializeComponent();
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			Window window = new MainWindow();
-			window.Show();
-		}
 	}
 }

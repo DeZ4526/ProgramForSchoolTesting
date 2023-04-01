@@ -34,6 +34,7 @@ namespace TestingProgram.Model.Testing
 			/// </summary>
 			public bool IsTrue { get; set; }
 
+
 			public Answer() { }
 			public Answer(string Text, bool isTrue)
 			{

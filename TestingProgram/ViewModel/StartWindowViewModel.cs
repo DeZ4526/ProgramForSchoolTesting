@@ -5,8 +5,8 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using TestingProgram.Model;
-using TestingProgram.Model.Testing.TestConverters;
 using TestingProgram.View;
 
 namespace TestingProgram.ViewModel
@@ -28,8 +28,8 @@ namespace TestingProgram.ViewModel
 			}
 		}
 
-		private string ip;
-		private int port;
+		private string ip = "127.0.0.1";
+		private int port = 4526;
 
 		public string Ip
 		{
@@ -112,13 +112,14 @@ namespace TestingProgram.ViewModel
 				if (Controller.Connect(Ip, Port))
 				{
 					Controller.StartTestingToClient += Controller_StartTestingToClient;
+					MessageBox.Show("Done!");
 				}
 			});
 		}
 
 		private void Controller_StartTestingToClient(Model.Testing.Test test)
 		{
-			testingWindow.Show();
+			testingWindow.Dispatcher.Invoke(() => testingWindow.Show());
 		}
 
 		public ICommand StartServer
@@ -130,9 +131,8 @@ namespace TestingProgram.ViewModel
 					Controller.StartTestingToServer += Controller_StartTestingToServer;
 					try
 					{
-						string testText = File.ReadAllText(PathTestFile);
-						ITestConverter converter = new STSTConvertor();
-						Controller.StartTesting(new Model.Testing.Test(converter, testText));
+						Controller.SetSelectedTest(PathTestFile);
+						Controller.StartTesting(Controller.SelectedTest);
 					}
 					catch(Exception ex)
 					{

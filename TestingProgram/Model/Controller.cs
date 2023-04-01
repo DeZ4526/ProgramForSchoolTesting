@@ -1,9 +1,11 @@
 ﻿using ConsoleDebugTest.Model.ClientServer.Protocol;
 using System.IO;
+using System.Windows;
 using TestingProgram.Model.ClientServer.Protocol;
 using TestingProgram.Model.ClientServer.Server;
 using TestingProgram.Model.Testing;
 using TestingProgram.Model.Testing.TestConverters;
+using static System.Net.Mime.MediaTypeNames;
 using static TestingProgram.Model.ClientServer.Server.Server;
 
 namespace TestingProgram.Model
@@ -18,7 +20,7 @@ namespace TestingProgram.Model
 			None
 		}
 		private static Type type = Type.None;
-		public static Test SelectedTest { get; private set; }
+		public static Test SelectedTest { get;  set; }
 		private static IPacketConvector packetConvector = new MyPacketConvector();
 		private static ITestConverter testConvector = new STSTConvertor();
 
@@ -28,10 +30,20 @@ namespace TestingProgram.Model
 			if (Server.Start(port))
 			{
 				Server.ClientMessage += Server_ClientMessage;
+				Server.ClientConnect += Server_ClientConnect;
 				type = Type.Server;
 				return true;
 			}
 			return false;
+		}
+
+		private static void Server_ClientConnect(Client client)
+		{
+			if (SelectedTest != null)
+			{
+				byte[] p = packetConvector.GetBytes(new Packet(Packet.TypePacket.test, testConvector.GetText(SelectedTest)));
+				client.Send(p);
+			}
 		}
 
 		private static void Server_ClientMessage(Client client, byte[] buffer)
@@ -107,6 +119,7 @@ namespace TestingProgram.Model
 		}
 		public static void StartTesting(Test test)
 		{
+			SelectedTest = test;
 			switch (type)
 			{
 				case Type.Server:
@@ -121,6 +134,19 @@ namespace TestingProgram.Model
 				case Type.Client:
 					StartTestingToClient?.Invoke(test);
 					break;
+			}
+		}
+		public static bool SetSelectedTest(string path)
+		{
+			try
+			{
+				string testTest = File.ReadAllText(path);
+				SelectedTest = testConvector.GetTest(testTest);
+				return true;
+			}
+			catch
+			{
+				return false;
 			}
 		}
 		public static bool TestSave(Test test, string path)

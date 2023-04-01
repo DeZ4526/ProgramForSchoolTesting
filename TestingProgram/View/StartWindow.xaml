@@ -26,7 +26,7 @@
         </StackPanel>
 		<StackPanel Visibility="{Binding VisibilityStartServer}">
             <TextBlock>Port:</TextBlock>
-            <TextBox></TextBox>
+            <TextBox Text="{Binding Port}"></TextBox>
             <TextBlock>Файл теста:</TextBlock>
 			<Button Content="{Binding PathTestFile}" Command="{Binding SelectTestFile}" />
 			<Button Content="Запустить" Command="{Binding StartServer}"/>
