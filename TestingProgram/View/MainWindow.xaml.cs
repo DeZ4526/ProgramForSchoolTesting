@@ -14,15 +14,14 @@ using System.Windows.Shapes;
 
 namespace TestingProgram.View
 {
-	/// <summary>
-	/// Логика взаимодействия для StartWindow.xaml
-	/// </summary>
-	public partial class StartWindow : Window
-	{
-		public StartWindow()
-		{
-			InitializeComponent();
-		}
-
-	}
+    /// <summary>
+    /// Логика взаимодействия для MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+    }
 }

@@ -81,17 +81,9 @@
     <Compile Include="Model\Testing\TestConverters\TestToFile.cs" />
     <Compile Include="Model\Testing\TestingController.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />
-    <Compile Include="ViewModel\ResultsWindowViewModel.cs" />
-    <Compile Include="ViewModel\StartWindowViewModel.cs" />
-    <Compile Include="ViewModel\TestingWindowViewModel.cs" />
-    <Compile Include="View\ResultsWindow.xaml.cs">
-      <DependentUpon>ResultsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\StartWindow.xaml.cs">
-      <DependentUpon>StartWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TestingWindow.xaml.cs">
-      <DependentUpon>TestingWindow.xaml</DependentUpon>
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -122,15 +114,27 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="View\ResultsWindow.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Styles\Buttons.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\StartWindow.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TestingWindow.xaml">
+    <Page Include="Styles\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Texts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
